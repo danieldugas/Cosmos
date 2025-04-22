@@ -11,7 +11,7 @@
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
-# limitations under the License.
+from __future__ import annotations
 
 """A library for image tokenizers inference."""
 
@@ -58,7 +58,7 @@ class ImageTokenizer(torch.nn.Module):
             else None
         )
 
-    @torch.no_grad()
+    # @torch.no_grad()
     def autoencode(self, input_tensor: torch.Tensor) -> torch.Tensor:
         """Reconstrcuts a batch of image tensors after embedding into a latent.
 
@@ -75,7 +75,7 @@ class ImageTokenizer(torch.nn.Module):
             output_tensor = self.decode(output_latent)
         return output_tensor
 
-    @torch.no_grad()
+    # @torch.no_grad()
     def decode(self, input_latent: torch.Tensor) -> torch.Tensor:
         """Decodes an image from a provided latent embedding.
 
@@ -87,7 +87,7 @@ class ImageTokenizer(torch.nn.Module):
         """
         return self._dec_model(input_latent)
 
-    @torch.no_grad()
+    # @torch.no_grad()
     def encode(self, input_tensor: torch.Tensor) -> tuple[torch.Tensor]:
         """Encodes an image into a latent embedding or code.
 
@@ -108,7 +108,7 @@ class ImageTokenizer(torch.nn.Module):
             return output_latent
         return output_latent[:-1]
 
-    @torch.no_grad()
+    # @torch.no_grad()
     def forward(self, image: np.ndarray) -> np.ndarray:
         """Reconstructs an image using a pre-trained tokenizer.
 
